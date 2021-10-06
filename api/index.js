@@ -1,12 +1,13 @@
 const { ApolloServer, gql } = require('apollo-server');
 const { GraphQLScalarType, Kind } = require('graphql');
 const fs = require('fs');
+const { argsToArgsConfig } = require('graphql/type/definition');
 
 // METOCEAN DATA SOURCE
 
-const weather = [];
+const weatherData = [];
 
-fs.readFileSync('metocean.txt', 'utf8', (err, data) => {
+fs.readFile('metocean.txt', 'utf8', (err, data) => {
   if (err) {
     console.error(err);
     return;
@@ -23,13 +24,13 @@ fs.readFileSync('metocean.txt', 'utf8', (err, data) => {
     .shift()
     .map((el) => el.toLowerCase().match(/^\w+/).shift());
 
-  // Create objects with headings as properties and row-columns as values
-  weather.push(
+  // Create objects with headings as properties and row data as values
+  weatherData.push(
     ...rows.map((row) =>
       row.reduce(
         (arr, val, index) => ({
           ...arr,
-          [headings[index]]: index > 0 ? Number(val) : val,
+          [headings[index]]: index > 0 ? Number(val) : Date.parse(val),
         }),
         {}
       )
@@ -39,11 +40,10 @@ fs.readFileSync('metocean.txt', 'utf8', (err, data) => {
 
 // Type definitions
 const typeDefs = gql`
-  scalar Date
   scalar Number
 
   type Weather {
-    time: Date
+    time: Number
     lev: Number
     hs: Number
     hx: Number
@@ -86,33 +86,15 @@ const typeDefs = gql`
   }
 
   type Query {
-    weather: Weather
-    weathers: [Weather]
+    weatherAll: [Weather]
+    weatherBetween(start: Number! end: Number!): [Weather]
   }
 `;
-
-// Date scalar
-const dateScalar = new GraphQLScalarType({
-  name: 'Date',
-  description: 'Date as integer',
-  serialize(value) {
-    return Date.parse(value); // Convert outgoing Date to integer for JSON
-  },
-  parseValue(value) {
-    return new Date(value); // Convert incoming integer to Date
-  },
-  parseLiteral(ast) {
-    if (ast.kind === Kind.INT) {
-      return new Date(parseInt(ast.value, 10)); // Convert hard-coded AST string to integer and then to Date
-    }
-    return null; // Invalid hard-coded value (not an integer)
-  },
-});
 
 // Number scalar
 const numberScalar = new GraphQLScalarType({
   name: 'Number',
-  description: 'Number as either int or decimal.',
+  description: 'Number as int or decimal',
   serialize(value) {
     return Number(value);
   },
@@ -126,11 +108,11 @@ const numberScalar = new GraphQLScalarType({
 
 // Resolvers for data fetching
 const resolvers = {
-  Date: dateScalar,
   Number: numberScalar,
 
   Query: {
-    weather: () => weather,
+    weatherAll: () => weatherData,
+    weatherBetween: (_, args) => weatherData.filter(el=> el.time >= args.start && el.time <= args.end)
   },
 };
 
