@@ -1,7 +1,6 @@
 const { ApolloServer, gql } = require('apollo-server');
 const { GraphQLScalarType, Kind } = require('graphql');
 const fs = require('fs');
-const { argsToArgsConfig } = require('graphql/type/definition');
 
 // METOCEAN DATA SOURCE
 
