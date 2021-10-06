@@ -87,7 +87,8 @@ const typeDefs = gql`
 
   type Query {
     weatherAll: [Weather]
-    weatherBetween(start: Number! end: Number!): [Weather]
+    weatherAt(time: Number!): Weather
+    weatherBetween(start: Number!, end: Number!): [Weather]
   }
 `;
 
@@ -111,8 +112,10 @@ const resolvers = {
   Number: numberScalar,
 
   Query: {
-    weatherAll: () => weatherData,
-    weatherBetween: (_, args) => weatherData.filter(el=> el.time >= args.start && el.time <= args.end)
+    weatherAll: () => weatherData, // Get all weather data
+    weatherAt: (_, args) => weatherData.filter((el) => el.time == args.time)[0], // Get weather data at timestamp
+    weatherBetween: (_, args) =>
+      weatherData.filter((el) => el.time >= args.start && el.time <= args.end), // Get weather data between two timestamps
   },
 };
 
