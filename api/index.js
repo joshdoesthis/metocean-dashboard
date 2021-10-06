@@ -23,7 +23,7 @@ fs.readFileSync('metocean.txt', 'utf8', (err, data) => {
     .shift()
     .map((el) => el.toLowerCase().match(/^\w+/).shift());
 
-  // Convert rows to objects with headings as properties
+  // Create objects with headings as properties and row-columns as values
   weather.push(
     ...rows.map((row) =>
       row.reduce(
