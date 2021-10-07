@@ -4,7 +4,7 @@ const fs = require('fs');
 
 // METOCEAN DATA SOURCE
 
-const weatherData = [];
+const metoceanData = [];
 
 fs.readFile('metocean.txt', 'utf8', (err, data) => {
   if (err) {
@@ -24,7 +24,7 @@ fs.readFile('metocean.txt', 'utf8', (err, data) => {
     .map((el) => el.toLowerCase().match(/^\w+/).shift());
 
   // Create objects with headings as properties and row data as values
-  weatherData.push(
+  metoceanData.push(
     ...rows.map((row) =>
       row.reduce(
         (arr, val, index) => ({
@@ -41,7 +41,7 @@ fs.readFile('metocean.txt', 'utf8', (err, data) => {
 const typeDefs = gql`
   scalar Number
 
-  type Weather {
+  type Metocean {
     time: Number
     lev: Number
     hs: Number
@@ -85,9 +85,9 @@ const typeDefs = gql`
   }
 
   type Query {
-    weatherAll: [Weather]
-    weatherAt(time: Number!): Weather
-    weatherBetween(start: Number!, end: Number!): [Weather]
+    metoceanAll: [Metocean]
+    metoceanAt(time: Number!): Metocean
+    metoceanBetween(start: Number!, end: Number!): [Metocean]
   }
 `;
 
@@ -111,10 +111,11 @@ const resolvers = {
   Number: numberScalar,
 
   Query: {
-    weatherAll: () => weatherData, // Get all weather data
-    weatherAt: (_, args) => weatherData.filter((el) => el.time == args.time)[0], // Get weather data at timestamp
-    weatherBetween: (_, args) =>
-      weatherData.filter((el) => el.time >= args.start && el.time <= args.end), // Get weather data between two timestamps
+    metoceanAll: () => metoceanData, // Get all metocean data
+    metoceanAt: (_, args) =>
+      metoceanData.filter((el) => el.time == args.time)[0], // Get metocean data at timestamp
+    metoceanBetween: (_, args) =>
+      metoceanData.filter((el) => el.time >= args.start && el.time <= args.end), // Get metocean data between two timestamps
   },
 };
 
