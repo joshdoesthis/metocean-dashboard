@@ -1,0 +1,22 @@
+org: joshdoesthis
+app: apollo-lambda-metocean-api
+# serverless.yml
+
+service: apollo-lambda-metocean-api
+provider:
+  name: aws
+  runtime: nodejs14.x
+  profile: joshdoesthis
+functions:
+  graphql:
+    # this is formatted as <FILENAME>.<HANDLER>
+    handler: index.graphqlHandler
+    events:
+      - http:
+          path: /
+          method: post
+          cors: true
+      - http:
+          path: /
+          method: get
+          cors: true
