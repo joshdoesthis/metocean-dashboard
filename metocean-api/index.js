@@ -93,7 +93,7 @@ const typeDefs = gql`
 // Number scalar
 const numberScalar = new GraphQLScalarType({
   name: 'Number',
-  description: 'Number as int or decimal',
+  description: 'Number',
   serialize(value) {
     return Number(value);
   },
