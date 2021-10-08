@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import * as D3 from 'd3';
-
-const axios = require('axios');
 
 // Styles
 const pageStyles = {};
