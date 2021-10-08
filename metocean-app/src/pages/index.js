@@ -69,7 +69,7 @@ const IndexPage = () => {
   return (
     <main style={pageStyles}>
       <V.VictoryChart
-        domainPadding={10}
+        //domainPadding={5}
         scale={{
           x: D3.scaleUtc(),
           y: 'linear',
@@ -78,7 +78,7 @@ const IndexPage = () => {
         <V.VictoryBar
           data={metoceanData.metoceanAll}
           x='time'
-          y='wsp'
+          y='tmp'
           style={{ data: { fill: 'white' } }}
         />
       </V.VictoryChart>
