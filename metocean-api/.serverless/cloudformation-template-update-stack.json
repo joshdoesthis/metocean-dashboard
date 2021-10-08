@@ -207,7 +207,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/apollo-lambda-metocean-api/dev/1633683992987-2021-10-08T09:06:32.987Z/apollo-lambda-metocean-api.zip"
+          "S3Key": "serverless/apollo-lambda-metocean-api/dev/1633684353709-2021-10-08T09:12:33.709Z/apollo-lambda-metocean-api.zip"
         },
         "Handler": "s_graphql.handler",
         "Runtime": "nodejs14.x",
@@ -225,14 +225,14 @@
         "GraphqlLogGroup"
       ]
     },
-    "GraphqlLambdaVersionh0BKqtNcJ3zz0Y8FhstdhLk19xzaYOJUCKJsVarS8": {
+    "GraphqlLambdaVersiongdjpd79AROUsrmIG7ChJwQ4ok9T1HlBYRpuPh3zhVM": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "GraphqlLambdaFunction"
         },
-        "CodeSha256": "8dpq7jVrRVQMLKr5GHy8WIrZRO5aKUSV/tWmHLXY0LI="
+        "CodeSha256": "2aB8etJFJNl4PRSbYNFLHS9l2CDsnULDG0f/G1LbRUY="
       }
     },
     "ApiGatewayRestApi": {
@@ -393,7 +393,7 @@
         "GraphqlLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1633683979913": {
+    "ApiGatewayDeployment1633684336068": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -553,7 +553,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/apollo-lambda-metocean-api/dev/1633683992987-2021-10-08T09:06:32.987Z/custom-resources.zip"
+          "S3Key": "serverless/apollo-lambda-metocean-api/dev/1633684353709-2021-10-08T09:12:33.709Z/custom-resources.zip"
         },
         "FunctionName": "apollo-lambda-metocean-api-dev-custom-resource-apigw-cw-role",
         "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -615,7 +615,7 @@
     "GraphqlLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "GraphqlLambdaVersionh0BKqtNcJ3zz0Y8FhstdhLk19xzaYOJUCKJsVarS8"
+        "Ref": "GraphqlLambdaVersiongdjpd79AROUsrmIG7ChJwQ4ok9T1HlBYRpuPh3zhVM"
       },
       "Export": {
         "Name": "sls-apollo-lambda-metocean-api-dev-GraphqlLambdaFunctionQualifiedArn"
