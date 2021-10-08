@@ -1,6 +1,6 @@
-const { ApolloServer, gql } = require('apollo-server-lambda');
-const { GraphQLScalarType, Kind } = require('graphql');
-const fs = require('fs');
+import { ApolloServer, gql } from 'apollo-server-lambda';
+import { GraphQLScalarType, Kind } from 'graphql';
+import fs from 'fs';
 
 // METOCEAN DATA SOURCE
 
@@ -131,4 +131,4 @@ const server = new ApolloServer({
 //});
 
 // For serverless lambda
-exports.graphqlHandler = server.createHandler();
+export const graphqlHandler = server.createHandler();
