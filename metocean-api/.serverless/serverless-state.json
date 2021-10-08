@@ -220,7 +220,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/apollo-lambda-metocean-api/dev/1633684353709-2021-10-08T09:12:33.709Z/apollo-lambda-metocean-api.zip"
+                "S3Key": "serverless/apollo-lambda-metocean-api/dev/1633731114769-2021-10-08T22:11:54.769Z/apollo-lambda-metocean-api.zip"
               },
               "Handler": "s_graphql.handler",
               "Runtime": "nodejs14.x",
@@ -238,14 +238,14 @@
               "GraphqlLogGroup"
             ]
           },
-          "GraphqlLambdaVersiongdjpd79AROUsrmIG7ChJwQ4ok9T1HlBYRpuPh3zhVM": {
+          "GraphqlLambdaVersionSnoOSpeMZR0tHrxW2T2Q8zMAHzCtL02RdLFskCwlmY": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GraphqlLambdaFunction"
               },
-              "CodeSha256": "2aB8etJFJNl4PRSbYNFLHS9l2CDsnULDG0f/G1LbRUY="
+              "CodeSha256": "mX56rq3g/D4zp3TOE6ndgo6Kit5cwvYIdscxAL7RC9Q="
             }
           },
           "ApiGatewayRestApi": {
@@ -406,7 +406,7 @@
               "GraphqlLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1633684336068": {
+          "ApiGatewayDeployment1633731089213": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -566,7 +566,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/apollo-lambda-metocean-api/dev/1633684353709-2021-10-08T09:12:33.709Z/custom-resources.zip"
+                "S3Key": "serverless/apollo-lambda-metocean-api/dev/1633731114769-2021-10-08T22:11:54.769Z/custom-resources.zip"
               },
               "FunctionName": "apollo-lambda-metocean-api-dev-custom-resource-apigw-cw-role",
               "Handler": "apiGatewayCloudWatchRole/handler.handler",
@@ -628,7 +628,7 @@
           "GraphqlLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GraphqlLambdaVersiongdjpd79AROUsrmIG7ChJwQ4ok9T1HlBYRpuPh3zhVM"
+              "Ref": "GraphqlLambdaVersionSnoOSpeMZR0tHrxW2T2Q8zMAHzCtL02RdLFskCwlmY"
             },
             "Export": {
               "Name": "sls-apollo-lambda-metocean-api-dev-GraphqlLambdaFunctionQualifiedArn"
@@ -809,7 +809,7 @@
         "timeout": 6,
         "runtime": "nodejs14.x",
         "vpc": {},
-        "versionLogicalId": "GraphqlLambdaVersiongdjpd79AROUsrmIG7ChJwQ4ok9T1HlBYRpuPh3zhVM"
+        "versionLogicalId": "GraphqlLambdaVersionSnoOSpeMZR0tHrxW2T2Q8zMAHzCtL02RdLFskCwlmY"
       }
     },
     "configValidationMode": "warn",
@@ -837,7 +837,7 @@
     "artifact": "/Users/josh/Sites/y5-metocean/metocean-api/.serverless/apollo-lambda-metocean-api.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/apollo-lambda-metocean-api/dev/1633684353709-2021-10-08T09:12:33.709Z",
+    "artifactDirectoryName": "serverless/apollo-lambda-metocean-api/dev/1633731114769-2021-10-08T22:11:54.769Z",
     "artifact": "apollo-lambda-metocean-api.zip"
   }
 }
