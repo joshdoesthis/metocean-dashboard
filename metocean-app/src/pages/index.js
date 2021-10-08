@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import * as D3 from 'd3';
 
 const axios = require('axios');
 
