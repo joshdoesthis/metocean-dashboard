@@ -14,5 +14,6 @@
     "apollo-server": "^3.3.0",
     "apollo-server-lambda": "^3.3.0",
     "graphql": "^15.6.1"
-  }
+  },
+  "type": "module"
 }
