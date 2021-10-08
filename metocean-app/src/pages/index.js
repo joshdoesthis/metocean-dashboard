@@ -19,6 +19,11 @@ const IndexPage = () => {
           query Query {
             metoceanAll {
               time
+              sst
+              vis
+              rh
+              tmp
+              precip
             }
           }
       `,
@@ -26,11 +31,7 @@ const IndexPage = () => {
     }).then((result) => setMetoceanData(result.data.data));
   }, []);
 
-  return (
-    <main style={pageStyles}>
-      <p>{console.log(metoceanData)}</p>
-    </main>
-  );
+  return <main style={pageStyles}></main>;
 };
 
 export default IndexPage;
