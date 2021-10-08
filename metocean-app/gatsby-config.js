@@ -1,8 +1,6 @@
 module.exports = {
-    siteMetadata: {
-        siteUrl: `https://www.yourdomain.tld`,
-    },
-    plugins: [
-
-    ]
-}
+  siteMetadata: {
+    title: "Metocean App",
+  },
+  plugins: [],
+};
