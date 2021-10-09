@@ -66,22 +66,104 @@ const IndexPage = () => {
     }).then((result) => setMetoceanData(result.data.data));
   }, []);
 
+  const [selectedDomain, setSelectedDomain] = useState([]);
+
   return (
     <main style={pageStyles}>
       <V.VictoryChart
-        //domainPadding={5}
+        //theme={V.VictoryTheme.material}
+        height={200}
         scale={{
           x: D3.scaleUtc(),
           y: 'linear',
         }}
+        containerComponent={
+          <V.VictoryZoomContainer
+            //responsive={false}
+            zoomDimension='x'
+            zoomDomain={selectedDomain}
+            disable
+          />
+        }
       >
-        <V.VictoryBar
-          data={metoceanData.metoceanAll}
-          x='time'
-          y='tmp'
-          style={{ data: { fill: 'white' } }}
+        <V.VictoryGroup
+          style={{
+            data: {
+              strokeWidth: 0.5,
+              strokeLinecap: 'round',
+            },
+          }}
+        >
+          {/*<V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp100' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp80' />
+        <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp50' />*/}
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='gst' />
+        </V.VictoryGroup>
+        <V.VictoryAxis
+          dependentAxis
+          label='Knots'
+          style={{ tickLabels: { fontSize: 8 } }}
         />
       </V.VictoryChart>
+
+      <V.VictoryChart
+        //theme={V.VictoryTheme.material}
+        height={200}
+        scale={{
+          x: D3.scaleUtc(),
+          y: 'linear',
+        }}
+        containerComponent={
+          <V.VictoryBrushContainer
+            //responsive={false}
+            brushDimension='x'
+            brushDomain={selectedDomain}
+            onBrushDomainChange={(domain) => {
+              domain.x = [
+                domain.x[0] - (domain.x[0] % 3600000),
+                domain.x[1] - (domain.x[1] % 3600000),
+              ];
+              setSelectedDomain(domain);
+            }}
+          />
+        }
+      >
+        <V.VictoryGroup
+          style={{
+            data: {
+              strokeWidth: 0.5,
+              strokeLinecap: 'round',
+            },
+          }}
+        >
+          {/*<V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp100' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp80' />
+        <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp50' />*/}
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='gst' />
+        </V.VictoryGroup>
+        <V.VictoryAxis dependentAxis style={{ tickLabels: { fontSize: 0 } }} />
+        <V.VictoryAxis
+          tickCount={2}
+          tickFormat={(tick) => `${new Date(tick)}`}
+          style={{ tickLabels: { fontSize: 8 } }}
+        />
+      </V.VictoryChart>
+
+      <V.VictoryLegend
+        title='Wind Speed'
+        orientation='vertical'
+        gutter={20}
+        //theme={V.VictoryTheme.material}
+        data={[
+          { name: 'Typical Gust' },
+          { name: '@ 10m' },
+          { name: '@ 50m' },
+          { name: '@ 80m' },
+          { name: '@ 100m' },
+        ]}
+      />
     </main>
   );
 };
