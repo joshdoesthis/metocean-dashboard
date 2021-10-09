@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import * as D3 from 'd3';
 import * as V from 'victory';
+import { style } from 'd3';
 
 // Styles
 const pageStyles = {};
@@ -68,101 +69,133 @@ const IndexPage = () => {
 
   const [selectedDomain, setSelectedDomain] = useState([]);
 
+  const theme = V.VictoryTheme.material;
+  const padding = { chart: { top: 8, right: 8, bottom: 28, left: 28 } };
+  const domainPadding = { x: 1, y: 1 };
+  const styles = {
+    axis: {
+      axis: {
+        strokeWidth: 1,
+      },
+      grid: {
+        //stroke: 'none',
+      },
+      ticks: {
+        size: 2,
+      },
+      tickLabels: {
+        fontSize: 8,
+      },
+    },
+    line: {
+      data: {
+        strokeWidth: 1,
+        strokeLinejoin: 'round',
+      },
+    },
+    chart: {},
+  };
+
+  const WindLines = (
+    <V.VictoryGroup style={styles.group}>
+      <V.VictoryLine
+        style={styles.line}
+        data={metoceanData.metoceanAll}
+        interpolation={'natural'}
+        x='time'
+        y='gst'
+      />
+      <V.VictoryLine
+        style={styles.line}
+        data={metoceanData.metoceanAll}
+        interpolation={'natural'}
+        x='time'
+        y='wsp'
+      />
+      <V.VictoryLine
+        style={styles.line}
+        data={metoceanData.metoceanAll}
+        interpolation={'natural'}
+        x='time'
+        y='wsp50'
+      />
+      <V.VictoryLine
+        style={styles.line}
+        data={metoceanData.metoceanAll}
+        interpolation={'natural'}
+        x='time'
+        y='wsp80'
+      />
+      <V.VictoryLine
+        style={styles.line}
+        data={metoceanData.metoceanAll}
+        interpolation={'natural'}
+        x='time'
+        y='wsp100'
+      />
+    </V.VictoryGroup>
+  );
+
   return (
     <main style={pageStyles}>
       <V.VictoryChart
-        theme={V.VictoryTheme.material}
-        height={200}
+        theme={theme}
+        height={padding.chart.top + padding.chart.bottom + 100} // Total vertical padding + height;
+        padding={padding.chart}
+        domainPadding={domainPadding}
+        style={styles.chart}
         scale={{
           x: D3.scaleUtc(),
           y: 'linear',
         }}
         containerComponent={
           <V.VictoryZoomContainer
-            //responsive={false}
             zoomDimension='x'
             zoomDomain={selectedDomain}
             disable
           />
         }
       >
-        <V.VictoryGroup
-          style={{
-            data: {
-              strokeWidth: 0.5,
-              strokeLinecap: 'round',
-            },
-          }}
-        >
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='gst' />
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp' />
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp50' />
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp80' />
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp100' />
-        </V.VictoryGroup>
-        <V.VictoryAxis
-          dependentAxis
-          label='Knots'
-          style={{ tickLabels: { fontSize: 8 } }}
-        />
+        {WindLines}
+        <V.VictoryAxis style={styles.axis} />
+        <V.VictoryAxis dependentAxis style={styles.axis} />
       </V.VictoryChart>
 
       <V.VictoryChart
-        theme={V.VictoryTheme.material}
-        height={150}
+        theme={theme}
+        height={padding.chart.top + padding.chart.bottom + 25} // Total vertical padding + height;
+        padding={padding.chart}
+        domainPadding={domainPadding}
         scale={{
           x: D3.scaleUtc(),
           y: 'linear',
         }}
         containerComponent={
           <V.VictoryBrushContainer
-            //responsive={false}
             brushDimension='x'
             brushDomain={selectedDomain}
-            onBrushDomainChange={(domain) => {
-              domain.x = [
-                domain.x[0] - (domain.x[0] % 3600000),
-                domain.x[1] - (domain.x[1] % 3600000),
-              ];
-              setSelectedDomain(domain);
-            }}
+            onBrushDomainChange={(domain) => setSelectedDomain(domain)}
           />
         }
       >
-        <V.VictoryGroup
+        {WindLines}
+        <V.VictoryAxis
           style={{
-            data: {
-              strokeWidth: 0.5,
-              strokeLinecap: 'round',
+            axis: {
+              stroke: 'none',
+            },
+            grid: {
+              stroke: 'none',
+            },
+            ticks: {
+              stroke: 'none',
+            },
+            tickLabels: {
+              fill: 'none',
             },
           }}
-        >
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='gst' />
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp' />
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp50' />
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp80' />
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp100' />
-        </V.VictoryGroup>
-        <V.VictoryAxis dependentAxis style={{ tickLabels: { fontSize: 0 } }} />
-        <V.VictoryAxis
-          tickFormat={(tick) => `${new Date(tick)}`}
-          style={{ tickLabels: { fontSize: 8 } }}
         />
       </V.VictoryChart>
-
-      <V.VictoryLegend
-        title='Wind Speed'
-        orientation='vertical'
-        gutter={20}
-        theme={V.VictoryTheme.material}
-        data={[
-          { name: '@ 100m' },
-          { name: '@ 80m' },
-          { name: '@ 50m' },
-          { name: '@ 10m' },
-          { name: 'Typical Gust' },
-        ]}
-      />
     </main>
   );
 };
