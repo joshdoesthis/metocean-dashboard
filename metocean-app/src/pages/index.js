@@ -71,7 +71,7 @@ const IndexPage = () => {
   return (
     <main style={pageStyles}>
       <V.VictoryChart
-        //theme={V.VictoryTheme.material}
+        theme={V.VictoryTheme.material}
         height={200}
         scale={{
           x: D3.scaleUtc(),
@@ -94,11 +94,11 @@ const IndexPage = () => {
             },
           }}
         >
-          {/*<V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp100' />
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp80' />
-        <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp50' />*/}
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp' />
           <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='gst' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp50' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp80' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp100' />
         </V.VictoryGroup>
         <V.VictoryAxis
           dependentAxis
@@ -108,8 +108,8 @@ const IndexPage = () => {
       </V.VictoryChart>
 
       <V.VictoryChart
-        //theme={V.VictoryTheme.material}
-        height={200}
+        theme={V.VictoryTheme.material}
+        height={150}
         scale={{
           x: D3.scaleUtc(),
           y: 'linear',
@@ -137,15 +137,14 @@ const IndexPage = () => {
             },
           }}
         >
-          {/*<V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp100' />
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp80' />
-        <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp50' />*/}
-          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp' />
           <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='gst' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp50' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp80' />
+          <V.VictoryLine data={metoceanData.metoceanAll} x='time' y='wsp100' />
         </V.VictoryGroup>
         <V.VictoryAxis dependentAxis style={{ tickLabels: { fontSize: 0 } }} />
         <V.VictoryAxis
-          tickCount={2}
           tickFormat={(tick) => `${new Date(tick)}`}
           style={{ tickLabels: { fontSize: 8 } }}
         />
@@ -155,13 +154,13 @@ const IndexPage = () => {
         title='Wind Speed'
         orientation='vertical'
         gutter={20}
-        //theme={V.VictoryTheme.material}
+        theme={V.VictoryTheme.material}
         data={[
-          { name: 'Typical Gust' },
-          { name: '@ 10m' },
-          { name: '@ 50m' },
-          { name: '@ 80m' },
           { name: '@ 100m' },
+          { name: '@ 80m' },
+          { name: '@ 50m' },
+          { name: '@ 10m' },
+          { name: 'Typical Gust' },
         ]}
       />
     </main>
