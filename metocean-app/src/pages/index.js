@@ -8,6 +8,7 @@ import WindSpeedLines from '../components/WindSpeedLines';
 const IndexPage = () => {
   // Client runtime data fetching
   const [metoceanData, setMetoceanData] = useState([]);
+  const [selectedDomain, setSelectedDomain] = useState([]);
 
   // Get Metocean data
   useEffect(() => {
@@ -15,28 +16,29 @@ const IndexPage = () => {
       url: 'https://t4xev4xyji.execute-api.us-east-1.amazonaws.com/dev/',
       method: 'post',
       data: {
-        query: `
-          query Query {
-            metoceanAll {
-              time
-              wsp
-              gst
-              wsp100
-              wsp50
-              wsp80
-            }
-          }
-        `,
+        query: MetoceanAllQuery,
       },
-    }).then((result) => {
-      console.log(result);
-      setMetoceanData(result.data.data);
-    });
+    }).then((result) => setMetoceanData(result.data.data));
   }, []);
 
   return (
     <Wrapper>
-      {metoceanData.metoceanAll && <WindSpeedLines lineData={metoceanData} />}
+      {metoceanData.metoceanAll && (
+        <>
+          <WindSpeedLines
+            metoceanData={metoceanData.metoceanAll}
+            selectedDomain={selectedDomain}
+            setSelectedDomain={setSelectedDomain}
+            withZoom
+          />
+          <WindSpeedLines
+            metoceanData={metoceanData.metoceanAll}
+            selectedDomain={selectedDomain}
+            setSelectedDomain={setSelectedDomain}
+            withBrush
+          />
+        </>
+      )}
     </Wrapper>
   );
 };
