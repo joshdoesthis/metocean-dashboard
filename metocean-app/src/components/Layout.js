@@ -1,14 +1,18 @@
 import React from 'react';
 
+const styles = {
+  wrapper: {},
+  charts: {},
+};
+
 const Area = (props) => {
-  return <div>{props.children}</div>;
+  return <div {...props}>{props.children}</div>;
 };
 
 const Wrapper = (props) => (
-  <Area>
-    <Area />
-    <Area>{props.children}</Area>
+  <Area style={styles.wrapper}>
+    <Area style={styles.charts}>{props.children}</Area>
   </Area>
 );
 
-export default Wrapper;
+export { Wrapper };
