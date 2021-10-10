@@ -18,6 +18,8 @@ const styles = {
   },
 };
 
-const Axis = (props) => <VictoryAxis {...props} style={styles.axis} />;
+const Axis = (props) => (
+  <VictoryAxis dependentAxis={props.dependentAxis} style={styles.axis} />
+);
 
 export default Axis;
