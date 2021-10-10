@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TimeScaleChart from './TimeScaleChart';
 import Group from './Group';
 import Line from './Line';
-import Axis from './Axis';
+import { Axis, DependentAxis } from './Axis';
 
 const WindSpeedLines = (props) => {
   return (
@@ -14,7 +14,8 @@ const WindSpeedLines = (props) => {
         {Line({ ...props, y: 'wsp80' })}
         {Line({ ...props, y: 'wsp100' })}
       </Group>
-      <Axis />
+      {Axis({ ...props })}
+      {DependentAxis({ ...props })}
     </TimeScaleChart>
   );
 };
