@@ -10,14 +10,18 @@ const styles = {
   },
 };
 
-const Line = (props) => (
-  <VictoryLine
-    style={styles.line}
-    data={props.data}
-    interpolation={'natural'}
-    x='time'
-    y={props.y}
-  />
-);
+const Line = (props) => {
+  console.log(props);
+
+  return (
+    <VictoryLine
+      style={styles.line}
+      data={props.lineData}
+      interpolation={'natural'}
+      x='time'
+      y={props.y}
+    />
+  );
+};
 
 export default Line;
