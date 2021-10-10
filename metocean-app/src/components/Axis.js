@@ -7,7 +7,7 @@ const styles = {
       strokeWidth: 1,
     },
     grid: {
-      //stroke: 'none',
+      //stroke: 'transparent',
     },
     ticks: {
       size: 2,
@@ -16,10 +16,31 @@ const styles = {
       fontSize: 8,
     },
   },
+  noAxis: {
+    axis: {
+      stroke: 'transparent',
+    },
+    grid: {
+      stroke: 'transparent',
+    },
+    ticks: {
+      stroke: 'transparent',
+    },
+    tickLabels: {
+      fill: 'transparent',
+    },
+  },
 };
 
 const Axis = (props) => (
-  <VictoryAxis dependentAxis={props.dependentAxis} style={styles.axis} />
+  <VictoryAxis style={props.withAxis ? styles.axis : styles.noAxis} />
 );
 
-export default Axis;
+const DependentAxis = (props) => (
+  <VictoryAxis
+    dependentAxis
+    style={props.withAxis ? styles.axis : styles.noAxis}
+  />
+);
+
+export { Axis, DependentAxis };
