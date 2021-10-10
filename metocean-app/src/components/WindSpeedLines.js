@@ -5,12 +5,14 @@ import Line from './Line';
 import Axis from './Axis';
 
 const WindSpeedLines = (props) => {
-  console.log(props);
-
   return (
-    <TimeScaleChart>
+    <TimeScaleChart {...props}>
       <Group>
-        <Line {...props} y='gst' />
+        {Line({ ...props, y: 'gst' })}
+        {Line({ ...props, y: 'wsp' })}
+        {Line({ ...props, y: 'wsp50' })}
+        {Line({ ...props, y: 'wsp80' })}
+        {Line({ ...props, y: 'wsp100' })}
       </Group>
       <Axis />
     </TimeScaleChart>
