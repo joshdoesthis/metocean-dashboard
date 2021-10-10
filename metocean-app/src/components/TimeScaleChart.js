@@ -19,7 +19,7 @@ const styles = {
 const TimeScaleChart = (props) => (
   <VictoryChart
     theme={theme}
-    height={padding.top + padding.bottom + 100} // Total vertical padding + height;
+    height={padding.top + padding.bottom + props.height} // Total vertical padding + height;
     padding={padding}
     domainPadding={domainPadding}
     style={styles.chart}
