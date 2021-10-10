@@ -6,6 +6,7 @@ const styles = {
     data: {
       strokeWidth: 1,
       strokeLinejoin: 'round',
+      strokeLinecap: 'round',
     },
   },
 };
