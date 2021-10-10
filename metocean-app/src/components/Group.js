@@ -11,7 +11,9 @@ const styles = {
 };
 
 const Group = (props) => (
-  <VictoryGroup style={styles.group}>{props.children}</VictoryGroup>
+  <VictoryGroup {...props} style={styles.group}>
+    {props.children}
+  </VictoryGroup>
 );
 
 export default Group;
