@@ -27,22 +27,22 @@ const TimeScaleChart = (props) => (
       x: D3.scaleUtc(),
       y: 'linear',
     }}
-    //containerComponent={<ZoomContainer {...props} />}
+    containerComponent={
+      (props.withZoom && ZoomContainer({ ...props })) ||
+      (props.withBrush && BrushContainer({ ...props }))
+    }
   >
     {props.children}
   </VictoryChart>
 );
 
-/*const ZoomContainer = (props) => {
-  console.log(props);
-  return (
-    <VictoryZoomContainer
-      zoomDimension='x'
-      zoomDomain={props.selectedDomain}
-      disable
-    />
-  );
-};
+const ZoomContainer = (props) => (
+  <VictoryZoomContainer
+    zoomDimension='x'
+    zoomDomain={props.selectedDomain}
+    disable
+  />
+);
 
 const BrushContainer = (props) => (
   <VictoryBrushContainer
@@ -50,6 +50,6 @@ const BrushContainer = (props) => (
     brushDomain={props.selectedDomain}
     onBrushDomainChange={(domain) => props.setSelectedDomain(domain)}
   />
-);*/
+);
 
 export default TimeScaleChart;
