@@ -14,7 +14,9 @@ const styles = {
 const Line = (props) => (
   <VictoryLine
     {...props}
-    style={styles.line}
+    style={{
+      data: { ...styles.line.data, stroke: props.stroke },
+    }}
     data={props.metoceanData}
     interpolation={'natural'}
     x='time'
