@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import TimeScaleChart from './TimeScaleChart';
 import Group from './Group';
 import Line from './Line';
@@ -8,11 +8,11 @@ const WindSpeedLines = (props) => {
   return (
     <TimeScaleChart {...props}>
       <Group>
-        {Line({ ...props, y: 'gst' })}
-        {Line({ ...props, y: 'wsp' })}
-        {Line({ ...props, y: 'wsp50' })}
-        {Line({ ...props, y: 'wsp80' })}
-        {Line({ ...props, y: 'wsp100' })}
+        {props.filter.map(
+          (el, i) =>
+            el.active &&
+            Line({ ...props, key: i, stroke: el.color, y: el.short })
+        )}
       </Group>
       {Axis({ ...props })}
       {DependentAxis({ ...props })}
