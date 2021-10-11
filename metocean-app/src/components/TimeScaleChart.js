@@ -29,20 +29,32 @@ const TimeScaleChart = (props) => (
   </VictoryChart>
 );
 
-const ZoomContainer = (props) => (
-  <VictoryZoomContainer
-    zoomDimension='x'
-    zoomDomain={props.selectedDomain}
-    disable
-  />
-);
+const ZoomContainer = (props) => {
+  const { selectedUnit } = props;
+  const scale = selectedUnit && selectedUnit.ratio ? selectedUnit.ratio : 1;
 
-const BrushContainer = (props) => (
-  <VictoryBrushContainer
-    brushDimension='x'
-    brushDomain={props.selectedDomain}
-    onBrushDomainChange={(domain) => props.setSelectedDomain(domain)}
-  />
-);
+  return (
+    <VictoryZoomContainer
+      zoomDimension='x'
+      zoomDomain={props.selectedDomain}
+      disable
+    />
+  );
+};
+
+const BrushContainer = (props) => {
+  const { selectedUnit } = props;
+  const scale = selectedUnit && selectedUnit.ratio ? selectedUnit.ratio : 1;
+
+  console.log(props.selectedDomain);
+
+  return (
+    <VictoryBrushContainer
+      brushDimension='x'
+      brushDomain={props.selectedDomain}
+      onBrushDomainChange={(domain) => props.setSelectedDomain(domain)}
+    />
+  );
+};
 
 export default TimeScaleChart;
