@@ -4,4 +4,4 @@ node_modules/
 .cache/
 public
 *.zip
-*metocean-api/.serverless/
+metocean-api/.serverless/
