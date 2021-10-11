@@ -17,6 +17,7 @@ const IndexPage = () => {
     { short: 'wsp80', name: '80m', color: '#1E90FF', active: true },
     { short: 'wsp100', name: '100m', color: '#4169E1', active: true },
   ]);
+  const [selectedUnit, setSelectedUnit] = useState([]);
 
   // Get Metocean data
   useEffect(() => {
@@ -35,14 +36,17 @@ const IndexPage = () => {
         <>
           <Legend
             title={'Wind Speed'}
-            unit={'Knots'}
             labels={active}
             setActive={setActive}
+            defaultUnit={'kts'}
+            selectedUnit={selectedUnit}
+            setSelectedUnit={setSelectedUnit}
           />
           <WindSpeedLines
             height={100}
             metoceanData={metoceanData.metoceanAll}
-            filter={active}
+            activeLines={active}
+            selectedUnit={selectedUnit}
             selectedDomain={selectedDomain}
             setSelectedDomain={setSelectedDomain}
             withZoom
@@ -51,7 +55,8 @@ const IndexPage = () => {
           <WindSpeedLines
             height={25}
             metoceanData={metoceanData.metoceanAll}
-            filter={active}
+            activeLines={active}
+            selectedUnit={selectedUnit}
             selectedDomain={selectedDomain}
             setSelectedDomain={setSelectedDomain}
             withBrush
