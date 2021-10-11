@@ -3,7 +3,6 @@ import * as D3 from 'd3';
 import {
   VictoryBrushContainer,
   VictoryChart,
-  VictoryTheme,
   VictoryZoomContainer,
 } from 'victory';
 import theme from './Theme';
