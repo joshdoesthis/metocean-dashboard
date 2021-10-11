@@ -10,6 +10,13 @@ const IndexPage = () => {
   // Client runtime data fetching
   const [metoceanData, setMetoceanData] = useState([]);
   const [selectedDomain, setSelectedDomain] = useState([]);
+  const [active, setActive] = useState([
+    { short: 'gst', name: 'Typical Gust', color: '#B0C4DE', active: true },
+    { short: 'wsp', name: '10m', color: '#B0E0E6', active: true },
+    { short: 'wsp50', name: '50m', color: '#87CEFA', active: true },
+    { short: 'wsp80', name: '80m', color: '#1E90FF', active: true },
+    { short: 'wsp100', name: '100m', color: '#4169E1', active: true },
+  ]);
 
   // Get Metocean data
   useEffect(() => {
@@ -29,17 +36,13 @@ const IndexPage = () => {
           <Legend
             title={'Wind Speed'}
             unit={'Knots'}
-            labels={[
-              { short: 'gst', name: 'Typical Gust', color: '#FFF59D' },
-              { short: 'wsp', name: '10m', color: '#F4511E' },
-              { short: 'wsp50', name: '50m', color: '#DCE775' },
-              { short: 'wsp80', name: '80m', color: '#8BC34A' },
-              { short: 'wsp100', name: '100m', color: '#00796B' },
-            ]}
+            labels={active}
+            setActive={setActive}
           />
           <WindSpeedLines
             height={100}
             metoceanData={metoceanData.metoceanAll}
+            filter={active}
             selectedDomain={selectedDomain}
             setSelectedDomain={setSelectedDomain}
             withZoom
@@ -48,6 +51,7 @@ const IndexPage = () => {
           <WindSpeedLines
             height={25}
             metoceanData={metoceanData.metoceanAll}
+            filter={active}
             selectedDomain={selectedDomain}
             setSelectedDomain={setSelectedDomain}
             withBrush
