@@ -1,7 +1,7 @@
 .DS_Store
 node_modules/
 .env*
-.serverless/
 .cache/
 public
 *.zip
+*metocean-api/.serverless/
