@@ -6,15 +6,10 @@ import {
   VictoryTheme,
   VictoryZoomContainer,
 } from 'victory';
+import theme from './Theme';
 
-const theme = VictoryTheme.material;
 const padding = { top: 8, right: 8, bottom: 28, left: 28 };
 const domainPadding = { x: 1, y: 1 };
-
-// Styles
-const styles = {
-  chart: {},
-};
 
 const TimeScaleChart = (props) => (
   <VictoryChart
@@ -22,7 +17,6 @@ const TimeScaleChart = (props) => (
     height={padding.top + padding.bottom + props.height} // Total vertical padding + height;
     padding={padding}
     domainPadding={domainPadding}
-    style={styles.chart}
     scale={{
       x: D3.scaleUtc(),
       y: 'linear',
