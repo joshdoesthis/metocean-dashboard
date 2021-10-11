@@ -22,7 +22,7 @@ const styles = {
     display: 'inline-flex',
     fontSize: '2vw',
     color: '#455A64',
-    borderWidth: 1,
+    borderWidth: '0.2vw',
     borderColor: '#ECEFF1',
     borderStyle: 'solid',
     borderRadius: '2vw',
@@ -56,17 +56,29 @@ const Legend = (props) => {
       <div style={styles.unit}>{props.unit}</div>
       {props.labels && (
         <div style={styles.labels}>
-          {props.labels.map((el, i) => (
-            <div key={i} style={styles.label}>
+          {props.labels.map((label, i) => (
+            <div
+              key={i}
+              style={styles.label}
+              onClick={() =>
+                // Toggle label and presentation of data
+                props.setActive(
+                  Object.assign(
+                    [...props.labels],
+                    ([...props.labels][i].active = ![...props.labels][i].active)
+                  )
+                )
+              }
+            >
               <div
                 style={Object.assign(
                   { ...styles.circle },
                   {
-                    backgroundColor: el.color,
+                    backgroundColor: label.active ? label.color : '#ECEFF1',
                   }
                 )}
               ></div>
-              <div style={styles.name}>{el.name}</div>
+              <div style={styles.name}>{label.name}</div>
             </div>
           ))}
         </div>
