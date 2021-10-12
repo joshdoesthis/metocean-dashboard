@@ -47,6 +47,10 @@ const DependentAxis = (props) => {
     <VictoryAxis
       dependentAxis
       style={props.withAxis ? styles.axis : styles.noAxis}
+      tickFormat={(tick, index, ticks) => {
+        console.log(tick, index, ticks);
+        return tick;
+      }}
     />
   );
 };
