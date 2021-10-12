@@ -22,13 +22,17 @@ const Line = (props) => {
     <VictoryLine
       {...props}
       style={{
-        data: { ...styles.line.data, stroke: props.stroke },
+        data: {
+          ...styles.line.data,
+          stroke: props.active ? props.stroke : 'transparent',
+        },
       }}
-      data={metoceanData.map((el) =>
+      /*data={metoceanData.map((el) =>
         Object.assign(el, {
           [props.y]: el[props.y] * scale,
         })
-      )}
+      )}*/
+      data={metoceanData}
       interpolation={'natural'}
       x='time'
       y={props.y}
