@@ -54,7 +54,7 @@ const centeredLabelStyles = Object.assign(
 // *
 // * Strokes
 // *
-const strokeDasharray = '10, 5';
+const strokeDasharray = '1, 2';
 const strokeLinecap = 'round';
 const strokeLinejoin = 'round';
 
