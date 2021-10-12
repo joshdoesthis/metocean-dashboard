@@ -9,12 +9,12 @@ import WindSpeedLines from '../components/WindSpeedLines';
 const IndexPage = () => {
   // Client runtime data fetching
   const [metoceanData, setMetoceanData] = useState([]);
-  const [selectedDomain, setSelectedDomain] = useState([]);
+  const [selectedDomain, setSelectedDomain] = useState({});
   const [active, setActive] = useState([
-    { short: 'gst', name: 'Typical Gust', color: '#B0C4DE', active: true },
-    { short: 'wsp', name: '10m', color: '#B0E0E6', active: true },
-    { short: 'wsp50', name: '50m', color: '#87CEFA', active: true },
-    { short: 'wsp80', name: '80m', color: '#1E90FF', active: true },
+    { short: 'gst', name: 'Typical Gust', color: '#B0C4DE', active: false },
+    { short: 'wsp', name: '10m', color: '#B0E0E6', active: false },
+    { short: 'wsp50', name: '50m', color: '#87CEFA', active: false },
+    { short: 'wsp80', name: '80m', color: '#1E90FF', active: false },
     { short: 'wsp100', name: '100m', color: '#4169E1', active: true },
   ]);
   const [selectedUnit, setSelectedUnit] = useState([]);
@@ -41,6 +41,8 @@ const IndexPage = () => {
             defaultUnit={'kts'}
             selectedUnit={selectedUnit}
             setSelectedUnit={setSelectedUnit}
+            selectedDomain={selectedDomain}
+            setSelectedDomain={setSelectedDomain}
           />
           <WindSpeedLines
             height={100}
