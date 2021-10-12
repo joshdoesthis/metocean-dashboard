@@ -45,6 +45,7 @@ const BrushContainer = (props) => (
     brushDimension='x'
     bushDomain={props.selectedDomain}
     onBrushDomainChange={(domain) => props.setSelectedDomain(domain)}
+    allowDraw={false}
   />
 );
 
