@@ -1,5 +1,6 @@
-import React from 'react';
-import { VictoryAxis } from 'victory';
+import React, { useState } from 'react';
+import { VictoryAxis, VictoryContainer } from 'victory';
+import _, { indexOf } from 'lodash';
 
 const styles = {
   axis: {
@@ -36,11 +37,18 @@ const Axis = (props) => (
   <VictoryAxis style={props.withAxis ? styles.axis : styles.noAxis} />
 );
 
-const DependentAxis = (props) => (
-  <VictoryAxis
-    dependentAxis
-    style={props.withAxis ? styles.axis : styles.noAxis}
-  />
-);
+const DependentAxis = (props) => {
+  const { selectedUnit } = props;
+  const scale = selectedUnit && selectedUnit.ratio ? selectedUnit.ratio : 1;
+
+  const [tickValues, setTickValues] = useState([]);
+
+  return (
+    <VictoryAxis
+      dependentAxis
+      style={props.withAxis ? styles.axis : styles.noAxis}
+    />
+  );
+};
 
 export { Axis, DependentAxis };
