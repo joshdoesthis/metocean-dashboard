@@ -1,5 +1,6 @@
 import React from 'react';
 import { VictoryLine } from 'victory';
+import _ from 'lodash';
 
 const styles = {
   line: {
@@ -15,14 +16,18 @@ const Line = (props) => {
   const { selectedUnit } = props;
   const scale = selectedUnit && selectedUnit.ratio ? selectedUnit.ratio : 1;
 
+  const metoceanData = _.cloneDeep(props.metoceanData);
+
   return (
     <VictoryLine
       {...props}
       style={{
         data: { ...styles.line.data, stroke: props.stroke },
       }}
-      data={props.metoceanData.map((el) =>
-        Object.assign(el, (el[props.y] = el[props.y] * scale))
+      data={metoceanData.map((el) =>
+        Object.assign(el, {
+          [props.y]: el[props.y] * scale,
+        })
       )}
       interpolation={'natural'}
       x='time'
