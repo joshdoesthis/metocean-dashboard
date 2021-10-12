@@ -20,41 +20,32 @@ const TimeScaleChart = (props) => (
       x: D3.scaleUtc(),
       y: 'linear',
     }}
-    containerComponent={
-      (props.withZoom && ZoomContainer({ ...props })) ||
-      (props.withBrush && BrushContainer({ ...props }))
-    }
+    containerComponent={SelectDomainComponent({
+      ...props,
+    })}
   >
     {props.children}
   </VictoryChart>
 );
 
-const ZoomContainer = (props) => {
-  const { selectedUnit } = props;
-  const scale = selectedUnit && selectedUnit.ratio ? selectedUnit.ratio : 1;
+const SelectDomainComponent = (props) =>
+  (props.withZoom && ZoomContainer({ ...props })) ||
+  (props.withBrush && BrushContainer({ ...props }));
 
-  return (
-    <VictoryZoomContainer
-      zoomDimension='x'
-      zoomDomain={props.selectedDomain}
-      disable
-    />
-  );
-};
+const ZoomContainer = (props) => (
+  <VictoryZoomContainer
+    zoomDimension='x'
+    zoomDomain={props.selectedDomain}
+    disable
+  />
+);
 
-const BrushContainer = (props) => {
-  const { selectedUnit } = props;
-  const scale = selectedUnit && selectedUnit.ratio ? selectedUnit.ratio : 1;
-
-  console.log(props.selectedDomain);
-
-  return (
-    <VictoryBrushContainer
-      brushDimension='x'
-      brushDomain={props.selectedDomain}
-      onBrushDomainChange={(domain) => props.setSelectedDomain(domain)}
-    />
-  );
-};
+const BrushContainer = (props) => (
+  <VictoryBrushContainer
+    brushDimension='x'
+    bushDomain={props.selectedDomain}
+    onBrushDomainChange={(domain) => props.setSelectedDomain(domain)}
+  />
+);
 
 export default TimeScaleChart;
