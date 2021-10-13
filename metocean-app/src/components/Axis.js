@@ -37,22 +37,11 @@ const Axis = (props) => (
   <VictoryAxis style={props.withAxis ? styles.axis : styles.noAxis} />
 );
 
-const DependentAxis = (props) => {
-  const { selectedUnit } = props;
-  const scale = selectedUnit && selectedUnit.ratio ? selectedUnit.ratio : 1;
-
-  const [tickValues, setTickValues] = useState([]);
-
-  return (
-    <VictoryAxis
-      dependentAxis
-      style={props.withAxis ? styles.axis : styles.noAxis}
-      tickFormat={(tick, index, ticks) => {
-        console.log(tick, index, ticks);
-        return tick;
-      }}
-    />
-  );
-};
+const DependentAxis = (props) => (
+  <VictoryAxis
+    dependentAxis
+    style={props.withAxis ? styles.axis : styles.noAxis}
+  />
+);
 
 export { Axis, DependentAxis };
