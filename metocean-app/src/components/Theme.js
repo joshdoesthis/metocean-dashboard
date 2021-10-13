@@ -58,7 +58,7 @@ const strokeDasharray = '1, 2';
 const strokeLinecap = 'round';
 const strokeLinejoin = 'round';
 
-export default {
+const theme = {
   area: Object.assign(
     {
       style: {
@@ -296,3 +296,5 @@ export default {
     baseProps
   ),
 };
+
+export default theme;
