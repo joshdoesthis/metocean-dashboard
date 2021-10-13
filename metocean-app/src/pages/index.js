@@ -11,7 +11,7 @@ const IndexPage = () => {
   const [metoceanData, setMetoceanData] = useState([]);
   const [selectedDomain, setSelectedDomain] = useState({});
   const [active, setActive] = useState([
-    { short: 'gst', name: 'Typical Gust', color: '#B0C4DE', active: false },
+    { short: 'gst', name: 'Typical Gust', color: '#B0C4DE', active: true },
     { short: 'wsp', name: '10m', color: '#B0E0E6', active: false },
     { short: 'wsp50', name: '50m', color: '#87CEFA', active: false },
     { short: 'wsp80', name: '80m', color: '#1E90FF', active: false },
