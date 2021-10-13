@@ -23,7 +23,7 @@ const Line = (props) => {
       {...props}
       animate={{
         duration: 1000,
-        easing: 'exp',
+        easing: 'ease',
       }}
       style={{
         data: {
