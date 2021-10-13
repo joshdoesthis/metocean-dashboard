@@ -44,25 +44,29 @@ const IndexPage = () => {
             selectedDomain={selectedDomain}
             setSelectedDomain={setSelectedDomain}
           />
-          <WindSpeedLines
-            height={100}
-            metoceanData={metoceanData.metoceanAll}
-            activeLines={active}
-            selectedUnit={selectedUnit}
-            selectedDomain={selectedDomain}
-            setSelectedDomain={setSelectedDomain}
-            withZoom
-            withAxis
-          />
-          <WindSpeedLines
-            height={25}
-            metoceanData={metoceanData.metoceanAll}
-            activeLines={active}
-            selectedUnit={selectedUnit}
-            selectedDomain={selectedDomain}
-            setSelectedDomain={setSelectedDomain}
-            withBrush
-          />
+          <div style={{ width: '50vw', marginLeft: '4vw' }}>
+            <WindSpeedLines
+              height={50}
+              metoceanData={metoceanData.metoceanAll}
+              activeLines={active}
+              selectedUnit={selectedUnit}
+              selectedDomain={selectedDomain}
+              setSelectedDomain={setSelectedDomain}
+              withBrush
+            />
+          </div>
+          <div style={{ marginTop: '-4vh' }}>
+            <WindSpeedLines
+              height={100}
+              metoceanData={metoceanData.metoceanAll}
+              activeLines={active}
+              selectedUnit={selectedUnit}
+              selectedDomain={selectedDomain}
+              setSelectedDomain={setSelectedDomain}
+              withZoom
+              withAxis
+            />
+          </div>
         </>
       )}
     </Wrapper>
