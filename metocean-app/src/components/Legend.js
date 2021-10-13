@@ -47,6 +47,9 @@ const styles = {
     height: '2vw',
     width: '2vw',
     borderRadius: '1vw',
+    webkitTransition: 'background-color 1000ms ease',
+    msTransition: 'background-color 1000ms ease',
+    transition: 'background-color 1000ms ease',
   },
   name: {
     display: 'inline-block',
