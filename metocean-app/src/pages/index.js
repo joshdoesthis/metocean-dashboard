@@ -44,7 +44,7 @@ const IndexPage = () => {
             selectedDomain={selectedDomain}
             setSelectedDomain={setSelectedDomain}
           />
-          <div style={{ width: '25vw', marginLeft: '6vw' }}>
+          <div style={{ width: '33vw', marginLeft: '5.33vw' }}>
             <WindSpeedLines
               height={50}
               metoceanData={metoceanData.metoceanAll}
