@@ -27,12 +27,12 @@ const Line = (props) => {
           stroke: props.active ? props.stroke : 'transparent',
         },
       }}
-      /*data={metoceanData.map((el) =>
+      data={metoceanData.map((el) =>
         Object.assign(el, {
           [props.y]: el[props.y] * scale,
         })
-      )}*/
-      data={metoceanData}
+      )}
+      //data={metoceanData}
       interpolation={'natural'}
       x='time'
       y={props.y}
