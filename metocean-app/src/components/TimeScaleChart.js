@@ -7,8 +7,8 @@ import {
 } from 'victory';
 import theme from './Theme';
 
-const padding = { top: 8, right: 8, bottom: 28, left: 28 };
-const domainPadding = { x: 1, y: 1 };
+const padding = { top: 14, right: 8, bottom: 28, left: 28 };
+const domainPadding = { x: 2, y: 2 };
 
 const TimeScaleChart = (props) => {
   const { selectedUnit } = props;
@@ -62,7 +62,7 @@ const BrushContainer = (props) => {
 const styles = {
   brush: {
     fill: '#455A64',
-    opacity: 0.5,
+    //opacity: 1,
   },
 };
 
