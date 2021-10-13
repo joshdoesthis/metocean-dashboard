@@ -21,6 +21,10 @@ const Line = (props) => {
   return (
     <VictoryLine
       {...props}
+      animate={{
+        duration: 1000,
+        easing: 'exp',
+      }}
       style={{
         data: {
           ...styles.line.data,
