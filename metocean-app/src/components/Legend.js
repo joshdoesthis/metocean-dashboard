@@ -87,6 +87,7 @@ const Legend = (props) => (
             scales[defaultUnit][nextUnitIndex < numScales ? nextUnitIndex : 0];
 
           props.setSelectedUnit(nextSelectedUnit);
+          props.setSelectedDomain();
         }}
       >
         {props.selectedUnit.scale
