@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import { VictoryAxis, VictoryContainer } from 'victory';
-import _, { indexOf } from 'lodash';
+import React from 'react';
+import { VictoryAxis } from 'victory';
 
 const styles = {
   axis: {
