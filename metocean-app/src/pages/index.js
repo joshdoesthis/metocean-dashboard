@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Wrapper } from '../components/Layout';
 import Legend from '../components/Legend';
 import MetoceanAllQuery from '../graphql/MetoceanAllQuery';
-import WindSpeedLines from '../components/WindSpeedLines';
+import WindSpeedChart from '../components/WindSpeedChart';
 
 // Markup
 const IndexPage = () => {
@@ -45,7 +45,7 @@ const IndexPage = () => {
             setSelectedDomain={setSelectedDomain}
           />
           <div style={{ width: '33vw', marginLeft: '5.33vw' }}>
-            <WindSpeedLines
+            <WindSpeedChart
               height={50}
               metoceanData={metoceanData.metoceanAll}
               activeLines={active}
@@ -56,7 +56,7 @@ const IndexPage = () => {
             />
           </div>
           <div style={{ marginTop: '-3vh' }}>
-            <WindSpeedLines
+            <WindSpeedChart
               height={100}
               metoceanData={metoceanData.metoceanAll}
               activeLines={active}
@@ -67,6 +67,16 @@ const IndexPage = () => {
               withAxis
             />
           </div>
+          <Legend
+            title={'Wind Direction'}
+            labels={active}
+            setActive={setActive}
+            defaultUnit={'deg'}
+            selectedUnit={selectedUnit}
+            setSelectedUnit={setSelectedUnit}
+            selectedDomain={selectedDomain}
+            setSelectedDomain={setSelectedDomain}
+          />
         </>
       )}
     </Wrapper>
