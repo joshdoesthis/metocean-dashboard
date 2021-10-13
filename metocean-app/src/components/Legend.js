@@ -78,6 +78,7 @@ const Legend = (props) => (
               { scale: 'm/s', ratio: 1 / 1.944 },
               { scale: 'ft/s', ratio: 1.688 },
             ],
+            deg: [{ scale: 'deg', ratio: 1 }],
           };
 
           const numScales = scales[defaultUnit].length;
