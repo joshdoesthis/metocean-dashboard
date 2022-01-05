@@ -1,4 +1,4 @@
-const MetoceanAllQuery = `
+const metoceanAllQuery = `
   query Query {
     metoceanAll {
       time
@@ -45,4 +45,4 @@ const MetoceanAllQuery = `
   }
 `;
 
-export default MetoceanAllQuery;
+export default metoceanAllQuery;
